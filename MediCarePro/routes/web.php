@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomePageController@index')->name('home');
+
+Route::resource('pacientes', 'PacienteController');
+Route::resource('medicos', 'MedicoController');
+Route::resource('atendimentos', 'AtendimentoController');
+
