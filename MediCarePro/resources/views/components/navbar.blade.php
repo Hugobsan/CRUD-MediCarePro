@@ -10,11 +10,11 @@
                     <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                         href="{{ route('home') }}">Home</a>
                     <a class="nav-link {{ request()->routeIs('medicos') ? 'active' : '' }}" aria-current="page"
-                        href="{{ route('medicos') }}">Médicos</a>
+                        href="{{ route('medicos.index') }}">Médicos</a>
                     <a class="nav-link {{ request()->routeIs('pacientes') ? 'active' : '' }}"
-                        href="{{ route('pacientes') }}">Pacientes</a>
+                        href="{{ route('pacientes.index') }}">Pacientes</a>
                     <a class="nav-link {{ request()->routeIs('atendimentos') ? 'active' : '' }}"
-                        href="{{ route('atendimentos') }}">Atendimentos</a>
+                        href="{{ route('atendimentos.index') }}">Atendimentos</a>
                 </div>
             </div>
         </div>

@@ -17,6 +17,16 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
 
     @yield('styles')
+    <style>
+        footer {
+            background-color: #f8f8f8;
+            position: relative;
+            padding: 10px 20px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,8 +36,9 @@
     <main>
         @yield('content')
     </main>
+    <div class="spacer"></div>
     <footer>
-        <!-- place footer here -->
+        @include('components.footer')
     </footer>
 
     <!-- Bootstrap JavaScript Libraries -->
@@ -42,6 +53,31 @@
     <script src="https://kit.fontawesome.com/b5d93e2cf1.js" crossorigin="anonymous"></script>
 
     @yield('scripts')
+    <script>
+        /*
+            updateSpacerHeight:
+            Atualiza a altura do espaçador do rodapé
+        */
+        function updateSpacerHeight() {
+            // Calculando a altura dos itens da página
+            var footerHeight = document.querySelector('footer').offsetHeight;
+            var headerHeight = document.querySelector('header').offsetHeight;
+            var mainHeader = document.querySelector('main').offsetHeight;
+
+            // Calculando a altura da tela
+            var windowHeight = window.innerHeight;
+
+            // Definindo o tamanho do espaçador de acordo com a altura da tela e os itens existentes;
+            document.querySelector('.spacer').style.height = windowHeight - (footerHeight + headerHeight + mainHeader) +
+                'px';
+        }
+
+        // Definindo o espaçador quando a página carrega
+        updateSpacerHeight();
+
+        // Calculando novamente o espaçador quando a página é redimensionada
+        window.addEventListener('resize', updateSpacerHeight);
+    </script>
 </body>
 
 </html>
