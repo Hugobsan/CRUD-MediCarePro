@@ -11,6 +11,6 @@ class AtendimentoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Atendimento::class, 10)->create();
+        factory(App\Atendimento::class, 30)->create();
     }
 }

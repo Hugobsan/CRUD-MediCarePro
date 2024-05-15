@@ -33,12 +33,12 @@
                                 <td>{{ $medico->crm }}</td>
                                 <td>{{ $medico->especialidade }}</td>
                                 <td>
-                                    <a href="{{ route('medicos.edit', $medico->id) }}" class="btn btn-warning">Editar</a>
+                                    <a href="{{ route('medicos.edit', $medico->id) }}" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
                                     <form action="{{ route('medicos.destroy', $medico->id) }}" method="post"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -49,6 +49,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="d-flex flex-row justify-content-center">
+                    {{ $medicos->links() }}
+                </div>
             </div>
         </div>
 

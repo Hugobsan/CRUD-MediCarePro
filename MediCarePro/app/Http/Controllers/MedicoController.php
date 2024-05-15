@@ -11,7 +11,7 @@ class MedicoController extends Controller
 {
     public function index()
     {
-        $medicos = Medico::all();
+        $medicos = Medico::paginate(10);
         return view('medicos.index', compact('medicos'));
     }
 
@@ -42,6 +42,8 @@ class MedicoController extends Controller
 
     public function destroy($id)
     {
-        //
+        Medico::findOrFail($id)->delete();
+        toastr()->success('Médico excluído com sucesso!');
+        return redirect()->route('medicos.index');
     }
 }

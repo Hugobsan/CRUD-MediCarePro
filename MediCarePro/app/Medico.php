@@ -21,4 +21,9 @@ class Medico extends Model
     {
         return $this->belongsToMany(Paciente::class, 'atendimentos');
     }
+
+    public function getCrmAttribute()
+    {
+        return substr($this->attributes['crm'], 0,5) . '-' . substr($this->attributes['crm'], 5, 2);
+    }
 }
