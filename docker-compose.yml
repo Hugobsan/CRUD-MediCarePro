@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   app:
-    image: 'php:7.4-fpm-alpine'
-    volumes:
-      - .:/var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     depends_on:
