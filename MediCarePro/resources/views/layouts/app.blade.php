@@ -22,6 +22,7 @@
             background-color: #f8f8f8;
             position: relative;
             padding: 10px 20px;
+            text-align: center;
             left: 0;
             bottom: 0;
             width: 100%;

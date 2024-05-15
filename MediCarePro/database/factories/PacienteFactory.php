@@ -10,7 +10,7 @@ $factory->define(Paciente::class, function (Faker $faker) {
     $faker = \Faker\Factory::create('pt_BR');
     return [
         'nome' => $faker->name,
-        'cpf' => $faker->unique()->cpf,
+        'cpf' => remove_mask($faker->unique()->cpf),
         'data_nascimento' => $faker->date,
         'email' => $faker->unique()->safeEmail,
     ];
