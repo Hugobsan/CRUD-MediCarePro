@@ -3,6 +3,20 @@ O CRUD-MediCarePro é um projeto de um sistema de gerenciamento de pacientes e m
 
 O projeto foi desenvolvido utilizando o framework Laravel 7, banco de dados MySQL, Laravel Blade no Front-End com Bootstrap e Docker para a criação dos containers.
 
+## Funcionalidades
+- Cadastro de Pacientes
+- Cadastro de Médicos
+- Listagem de Pacientes
+- Listagem de Médicos
+- Edição de Pacientes
+- Edição de Médicos
+- Exclusão de Pacientes
+- Exclusão de Médicos
+- Cadastro de Atendimentos
+- Listagem de Atendimentos
+- Edição de Atendimentos
+- Exclusão de Atendimentos
+
 ## Requisitos
 - Docker
 - Docker Compose
