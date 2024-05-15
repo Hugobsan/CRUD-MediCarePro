@@ -16,6 +16,7 @@ O projeto foi desenvolvido utilizando o framework Laravel 7, banco de dados MySQ
 - Listagem de Atendimentos
 - Edição de Atendimentos
 - Exclusão de Atendimentos
+- Relatório de Atendimentos
 
 ## Requisitos
 - Docker
