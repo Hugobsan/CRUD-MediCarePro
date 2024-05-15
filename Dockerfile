@@ -1,13 +1,10 @@
-# Use a imagem base do PHP
 FROM php:7.4-fpm-alpine
 
-# Instale as dependências necessárias, incluindo o driver do MySQL
+# Instalar dependências
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Configure o diretório de trabalho
-WORKDIR /var/www/html/MediCarePro
+# Configurar diretório de trabalho
+WORKDIR /var/www/html
 
-# Copie o código-fonte do aplicativo para o contêiner
-COPY . .
-
-
+# Copiar o conteúdo atual do diretório para o diretório de trabalho no contêiner
+COPY . /var/www/html
