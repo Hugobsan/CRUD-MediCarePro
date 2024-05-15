@@ -17,12 +17,18 @@ class MedicoController extends Controller
 
     public function create()
     {
-        //
+        return view('medicos.create');
     }
 
     public function store(SaveMedicoRequest $request)
     {
-        //
+        $dados = $request->all();
+
+        //Removendo traço do crm
+        $dados['crm'] = str_replace('-', '', $request->crm);
+        Medico::create($dados);
+        toastr()->success('Médico cadastrado com sucesso!');
+        return redirect()->route('medicos.index');
     }
 
     public function show($id)
