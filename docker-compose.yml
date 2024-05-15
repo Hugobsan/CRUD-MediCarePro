@@ -5,7 +5,6 @@ services:
     image: 'php:7.4-fpm-alpine'
     volumes:
       - .:/var/www/html
-      - laravel_vendor:/var/www/html/vendor
     ports:
       - "8000:8000"
     depends_on:
@@ -30,4 +29,3 @@ networks:
 
 volumes:
   dbdata:
-  laravel_vendor:
