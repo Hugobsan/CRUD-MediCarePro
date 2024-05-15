@@ -33,6 +33,7 @@
                                 <td>{{ $medico->crm }}</td>
                                 <td>{{ $medico->especialidade }}</td>
                                 <td>
+                                    <a href="{{route('medicos.show', $medico->id)}}" class="btn btn-secondary"><i class="fas fa-user"></i></a>
                                     <a href="{{ route('medicos.edit', $medico->id) }}" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
                                     <form action="{{ route('medicos.destroy', $medico->id) }}" method="post"
                                         class="d-inline">
