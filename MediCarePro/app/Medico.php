@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Medico extends Model
 {
@@ -32,5 +33,11 @@ class Medico extends Model
     public function setCrmAttribute($value)
     {
         $this->attributes['crm'] = strtoupper(str_replace('-', '', $value));
+    }
+
+    public static function getAllMedicos(){
+        return DB::table('medicos')
+        ->select('id', 'nome', 'crm', 'especialidade')
+        ->get()->toArray();
     }
 }
