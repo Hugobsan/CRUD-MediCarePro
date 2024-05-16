@@ -21,9 +21,6 @@
                     <h3>Atendimentos</h3>
                 </div>
                 <div>
-                    {{-- Exportar CSV --}}
-                    <a href="{{ route('medicos.export', $medico->id) }}" class="btn btn-success"> <i
-                            class="fas fa-file-export"></i> Exportar CSV</a>
                     {{-- Novo Atendimento --}}
                     <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#atendimentosCreateModal"> <i class="fas fa-plus"></i> Novo
                         Atendimento</a>
