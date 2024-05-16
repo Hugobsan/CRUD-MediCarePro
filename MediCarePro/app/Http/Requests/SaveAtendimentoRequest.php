@@ -13,7 +13,7 @@ class SaveAtendimentoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class SaveAtendimentoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'data_atendimento' => 'required|date',
+            'medico_id' => 'required|exists:medicos,id',
+            'paciente_id' => 'required|exists:pacientes,id'
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'data_atendimento.required' => 'O campo data do atendimento é obrigatório.',
+            'data_atendimento.date' => 'O campo data do atendimento deve ser uma data válida.',
+            'medico_id.required' => 'O campo médico é obrigatório.',
+            'medico_id.exists' => 'O médico selecionado não existe.',
+            'paciente_id.required' => 'O campo paciente é obrigatório.',
+            'paciente_id.exists' => 'O paciente selecionado não existe.'
         ];
     }
 }

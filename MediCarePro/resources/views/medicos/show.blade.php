@@ -21,9 +21,14 @@
                     <h3>Atendimentos</h3>
                 </div>
                 <div>
-                    <a href="{{ route('atendimentos.create') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Novo
+                    {{-- Exportar CSV --}}
+                    <a href="{{ route('medicos.export', $medico->id) }}" class="btn btn-success"> <i
+                            class="fas fa-file-export"></i> Exportar CSV</a>
+                    {{-- Novo Atendimento --}}
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#atendimentosCreateModal"> <i class="fas fa-plus"></i> Novo
                         Atendimento</a>
                 </div>
+                @include('medicos.components.atendimentos.create')
             </div>
             <div>
                 <table class="table table-striped">

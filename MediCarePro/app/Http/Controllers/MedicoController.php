@@ -6,6 +6,7 @@ use App\Atendimento;
 use App\Http\Requests\SaveMedicoRequest;
 use App\Http\Requests\UpdateMedicoRequest;
 use App\Medico;
+use App\Paciente;
 use Illuminate\Http\Request;
 
 class MedicoController extends Controller
@@ -32,7 +33,8 @@ class MedicoController extends Controller
     {
         $medico = Medico::findOrFail($id);
         $atendimentos = $medico->atendimentos()->orderBy('data_atendimento', 'desc')->paginate(10);
-        return view('medicos.show', compact('medico', 'atendimentos'));
+        $pacientes = Paciente::all();
+        return view('medicos.show', compact('medico', 'atendimentos', 'pacientes'));
     }
 
     public function edit($id)
