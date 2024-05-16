@@ -36,10 +36,11 @@ cd CRUD-MediCarePro
 3. Execute o comando abaixo para subir os containers
 O comando abaixo irá subir os containers e instalar as dependências do projeto
 ```bash
-docker-compose up --build
+docker-compose up -d
 ```
 
 4. Execute o comando abaixo para rodar as migrations e seeders
+Obs: Os seeders irão gerar automaticamente 10 registros de pacientes, medicos e atendimentos
 ```bash
 docker-compose exec app php artisan migrate --seed
 ```
