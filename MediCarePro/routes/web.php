@@ -17,8 +17,10 @@ Route::get('/', 'HomePageController@index')->name('home');
 
 Route::resource('pacientes', 'PacienteController');
 Route::resource('medicos', 'MedicoController');
+
 Route::group(array('prefix' => 'medicos', ['namespace' => 'medicos'], 'as' => 'medicos.'), function () {
     Route::get('/export/{id}', 'MedicoController@export')->name('export');
 });
+
 Route::resource('atendimentos', 'AtendimentoController');
 
