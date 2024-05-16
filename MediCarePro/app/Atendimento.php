@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Atendimento extends Model
 {
@@ -24,5 +25,15 @@ class Atendimento extends Model
     public function paciente()
     {
         return $this->belongsTo(Paciente::class);
+    }
+
+    public static function getAllAtendimentos()
+    {
+        return DB::table('atendimentos')
+            ->select('id', 'data_atendimento', 'medico.nome as medico', 'paciente.nome as paciente')
+            ->join('medicos', 'atendimentos.medico_id', '=', 'medicos.id')
+            ->join('pacientes', 'atendimentos.paciente_id', '=', 'pacientes.id')
+            ->select('atendimentos.id', 'atendimentos.data_atendimento', 'medicos.nome as medico', 'pacientes.nome as paciente')
+            ->get()->toArray();
     }
 }

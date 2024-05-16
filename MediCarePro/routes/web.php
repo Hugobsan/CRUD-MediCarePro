@@ -19,9 +19,14 @@ Route::group(array('prefix' => 'pacientes', ['namespace' => 'pacientes'], 'as' =
     Route::get('/export', 'PacienteController@export')->name('export');
 });
 Route::resource('pacientes', 'PacienteController');
+
 Route::group(array('prefix' => 'medicos', ['namespace' => 'medicos'], 'as' => 'medicos.'), function () {
     Route::get('/export', 'MedicoController@export')->name('export');
 });
 Route::resource('medicos', 'MedicoController');
+
+Route::group(array('prefix' => 'atendimentos', ['namespace' => 'atendimentos'], 'as' => 'atendimentos.'), function () {
+    Route::get('/export', 'AtendimentoController@export')->name('export');
+});
 Route::resource('atendimentos', 'AtendimentoController');
 
