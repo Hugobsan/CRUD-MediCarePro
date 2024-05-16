@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Paciente extends Model
 {
@@ -35,5 +36,12 @@ class Paciente extends Model
     public function getCpfAttribute($value)
     {
         return substr($value, 0, 3) . '.' . substr($value, 3, 3) . '.' . substr($value, 6, 3) . '-' . substr($value, -2);
+    }
+
+    public static function getAllPacientes(){
+        return DB::table('pacientes')
+        ->select('id', 'nome', 'cpf', 'data_nascimento', 'email')
+        ->get()
+        ->toArray();
     }
 }

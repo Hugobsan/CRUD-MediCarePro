@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PacienteExport;
 use App\Http\Requests\PacienteRequest;
 use App\Http\Requests\SavePacienteRequest;
 use App\Http\Requests\UpdatePacienteRequest;
+use App\Medico;
 use App\Paciente;
 use Illuminate\Http\Request;
+use Excel;
 
 class PacienteController extends Controller
 {
@@ -32,7 +35,8 @@ class PacienteController extends Controller
     {
         $paciente = Paciente::findOrFail($id);
         $atendimentos = $paciente->atendimentos()->orderBy('data_atendimento', 'desc')->paginate(10);
-        return view('pacientes.show', compact('paciente', 'atendimentos'));
+        $medicos = Medico::all();
+        return view('pacientes.show', compact('paciente', 'atendimentos', 'medicos'));
     }
 
     public function edit($id)
@@ -53,5 +57,10 @@ class PacienteController extends Controller
         Paciente::findOrFail($id)->delete();
         toastr()->success('Paciente excluído com sucesso!');
         return redirect()->route('pacientes.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new PacienteExport, 'pacientes.csv');
     }
 }

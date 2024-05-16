@@ -11,8 +11,11 @@
             <div>
                 <h1>Pacientes</h1>
             </div>
-            <div>
-                <a href="{{ route('pacientes.create') }}" class="btn btn-primary mb-4"><i class="fas fa-plus text-white"></i> Adicionar Médico</a>
+            <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+                <a href="{{ route('pacientes.export') }}" class="btn btn-success" target="_blank">
+                    <i class="fas fa-file-export"></i> Exportar CSV
+                </a>
+                <a href="{{ route('pacientes.create') }}" class="btn btn-primary"><i class="fas fa-plus text-white"></i> Adicionar Paciente</a>
             </div>
         </div>
         <div class="row">

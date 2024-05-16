@@ -53,7 +53,13 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b5d93e2cf1.js" crossorigin="anonymous"></script>
 
-    @yield('scripts')
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- JQuery Masks -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    @stack('scripts')
     <script>
         /*
             updateSpacerHeight:

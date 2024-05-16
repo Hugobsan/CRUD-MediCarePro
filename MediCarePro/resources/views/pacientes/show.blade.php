@@ -8,11 +8,12 @@
 @section('content')
     <div class="container">
         <div class="m-2">
-            <h2>{{ $medico->nome }}</h2>
+            <h2>{{ $paciente->nome }}</h2>
             <br>
-            <p>Nome: {{ $medico->nome }} </p>
-            <p>CRM: {{ $medico->crm }} </p>
-            <p>Especialidade: {{ $medico->especialidade }} </p>
+            <p>CPF: {{ $paciente->cpf }} </p>
+            <p>E-mail: {{ $paciente->email }} </p>
+            <p>Data de Nascimento: {{ $paciente->data_nascimento->format('d/m/Y') }} </p>
+            <p>Cliente desde: {{ $paciente->atendimentos->first()->data_atendimento->format('d/m/Y') ?? 'Ainda não possui atendimento!'}}</p>
         </div>
         <hr>
         <div>
@@ -21,21 +22,18 @@
                     <h3>Atendimentos</h3>
                 </div>
                 <div>
-                    {{-- Exportar CSV --}}
-                    <a href="{{ route('medicos.export', $medico->id) }}" class="btn btn-success"> <i
-                            class="fas fa-file-export"></i> Exportar CSV</a>
                     {{-- Novo Atendimento --}}
                     <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#atendimentosCreateModal"> <i class="fas fa-plus"></i> Novo
                         Atendimento</a>
                 </div>
-                @include('medicos.components.atendimentos.create')
+                @include('pacientes.components.atendimentos.create')
             </div>
             <div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Paciente</th>
+                            <th>Médico</th>
                             <th>Opções</th>
                         </tr>
                     </thead>
@@ -46,7 +44,7 @@
                                     class="{{ $atendimento->data_atendimento >= date('Y-m-d') ? 'text-danger' : '' }}">
                                     {{ $atendimento->data_atendimento->format('d/m/Y') }}
                                 </td>
-                                <td>{{ $atendimento->paciente->nome }}</td>
+                                <td>{{ $atendimento->medico->nome }}</td>
                                 <td>
                                     <a href="{{ route('atendimentos.edit', $atendimento->id) }}" class="btn btn-primary"> <i
                                             class="text-white fas fa-edit"></i> </a>

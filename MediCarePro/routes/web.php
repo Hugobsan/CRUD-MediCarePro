@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomePageController@index')->name('home');
 
+Route::group(array('prefix' => 'pacientes', ['namespace' => 'pacientes'], 'as' => 'pacientes.'), function () {
+    Route::get('/export', 'PacienteController@export')->name('export');
+});
 Route::resource('pacientes', 'PacienteController');
-Route::resource('medicos', 'MedicoController');
 Route::group(array('prefix' => 'medicos', ['namespace' => 'medicos'], 'as' => 'medicos.'), function () {
     Route::get('/export', 'MedicoController@export')->name('export');
 });
+Route::resource('medicos', 'MedicoController');
 Route::resource('atendimentos', 'AtendimentoController');
 

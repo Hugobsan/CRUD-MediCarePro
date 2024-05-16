@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use App\Rules\Cpf;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Registra a validação customizada 'cpf'
+        Validator::extend('cpf', function ($attribute, $value, $parameters, $validator) {
+            return (new Cpf)->passes($attribute, $value);
+        });
+
+        // Mensagem de erro personalizada para a validação 'cpf'
+        Validator::replacer('cpf', function ($message, $attribute, $rule, $parameters) {
+            return 'O CPF informado não é válido.';
+        });
     }
 }
