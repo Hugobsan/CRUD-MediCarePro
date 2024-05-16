@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Atendimento;
 use App\Http\Requests\SaveMedicoRequest;
 use App\Http\Requests\UpdateMedicoRequest;
 use App\Medico;
@@ -30,7 +31,8 @@ class MedicoController extends Controller
     public function show($id)
     {
         $medico = Medico::findOrFail($id);
-        return view('medicos.show', compact('medico'));
+        $atendimentos = $medico->atendimentos()->orderBy('data_atendimento', 'desc')->paginate(10);
+        return view('medicos.show', compact('medico', 'atendimentos'));
     }
 
     public function edit($id)

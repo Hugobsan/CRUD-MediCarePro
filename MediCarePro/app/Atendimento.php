@@ -12,6 +12,8 @@ class Atendimento extends Model
 
     protected $fillable = ['data_atendimento', 'medico_id', 'paciente_id'];
 
+    protected $dates = ['data_atendimento', 'deleted_at'];
+
     //Relação N:1 com a tabela medicos
     public function medico()
     {
