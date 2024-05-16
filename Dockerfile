@@ -1,7 +1,14 @@
 FROM php:7.4-fpm-alpine
 
-# Instalar dependências
-RUN docker-php-ext-install pdo pdo_mysql
+# Instalar dependências necessárias para compilar as extensões PHP
+RUN apk add --no-cache \
+    libzip-dev \
+    libxml2-dev \
+    gd-dev \
+    oniguruma-dev
+
+# Instalar e habilitar extensões PHP
+RUN docker-php-ext-install pdo pdo_mysql zip xml gd iconv simplexml xmlreader
 
 # Instalação do Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

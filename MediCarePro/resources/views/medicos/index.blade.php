@@ -7,12 +7,15 @@
 
 @section('content')
     <div class="container">
-        <div class="mt-4 p-2"style="display: flex; flex-direction: row; justify-content:space-between; align-items: center">
+        <div class="mt-4 p-2 d-flex flex-row justify-content-between align-items-center">
             <div>
                 <h1>Médicos</h1>
             </div>
-            <div>
-                <a href="{{ route('medicos.create') }}" class="btn btn-primary mb-4"><i class="fas fa-plus text-white"></i> Adicionar Médico</a>
+            <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+                <a href="{{ route('medicos.export') }}" class="btn btn-success" target="_blank">
+                    <i class="fas fa-file-export"></i> Exportar CSV
+                </a>
+                <a href="{{ route('medicos.create') }}" class="btn btn-primary"><i class="fas fa-plus text-white"></i> Adicionar Médico</a>
             </div>
         </div>
         <div class="row">
