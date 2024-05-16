@@ -22,10 +22,7 @@ class MedicoController extends Controller
 
     public function store(SaveMedicoRequest $request)
     {
-        $dados = $request->all();
-        //Removendo traço do crm
-        $dados['crm'] = strtoupper(str_replace('-', '', $request->crm));
-        Medico::create($dados);
+        Medico::create($request->all());
         toastr()->success('Médico cadastrado com sucesso!');
         return redirect()->route('medicos.index');
     }
@@ -44,10 +41,7 @@ class MedicoController extends Controller
 
     public function update(UpdateMedicoRequest $request, $id)
     {
-        $medico = Medico::findOrFail($id);
-        $dados = $request->all();
-        //Removendo traço do crm
-        $medico->update($dados);
+        Medico::findOrFail($id)->update($request->all());
         toastr()->success('Médico atualizado com sucesso!');
         return redirect()->route('medicos.index');
     }

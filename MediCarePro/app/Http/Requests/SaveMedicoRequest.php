@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SaveMedicoRequest extends FormRequest
 {
-    public $crm;
-    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -18,6 +16,15 @@ class SaveMedicoRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        if ($this->has('crm')) {
+            $this->merge([
+                'crm' => str_replace('-', '', $this->crm),
+            ]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,8 +32,6 @@ class SaveMedicoRequest extends FormRequest
      */
     public function rules()
     {
-        //Removendo traço do crm
-        $this->crm = strtoupper(str_replace('-', '', $this->crm));
         return [
             'nome' => 'required|string|max:255',
             'crm' => 'required|string|max:8|min:7|unique:medicos,crm',
