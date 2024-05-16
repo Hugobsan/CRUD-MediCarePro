@@ -47,7 +47,6 @@ class MedicoController extends Controller
         $medico = Medico::findOrFail($id);
         $dados = $request->all();
         //Removendo traço do crm
-        $dados['crm'] = strtoupper(str_replace('-', '', $request->crm));
         $medico->update($dados);
         toastr()->success('Médico atualizado com sucesso!');
         return redirect()->route('medicos.index');

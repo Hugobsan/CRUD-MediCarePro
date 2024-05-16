@@ -28,4 +28,9 @@ class Medico extends Model
     {
         return substr($this->attributes['crm'], 0,5) . '-' . substr($this->attributes['crm'], 5, 2);
     }
+
+    public function setCrmAttribute($value)
+    {
+        $this->attributes['crm'] = strtoupper(str_replace('-', '', $value));
+    }
 }

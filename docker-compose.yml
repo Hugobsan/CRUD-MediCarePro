@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - MediCarePro:/var/www/html
+      - ./MediCarePro:/var/www/html
     ports:
       - "8000:8000"
     depends_on:
@@ -31,4 +31,3 @@ networks:
 
 volumes:
   dbdata:
-  MediCarePro:
