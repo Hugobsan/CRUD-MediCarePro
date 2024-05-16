@@ -47,8 +47,4 @@ class AtendimentoController extends Controller
         toastr()->success('Atendimento excluído com sucesso!');
         return redirect()->back();
     }
-
-    public function export($id){
-        
-    }
 }

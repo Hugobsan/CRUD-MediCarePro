@@ -56,4 +56,36 @@ class MedicoController extends Controller
         toastr()->success('Médico excluído com sucesso!');
         return redirect()->route('medicos.index');
     }
+
+    /**
+     * Exporta os dados do médico em um arquivo CSV
+     */
+    public function export($id){
+        $medico = Medico::findOrFail($id);
+        $filename = 'medico_' . $medico->id . '.csv';
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$filename",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, array('ID', 'Nome', 'CRM', 'Especialidade', 'Telefone', 'E-mail'));
+
+        fputcsv($handle, array($medico->id, $medico->nome, $medico->crm));
+
+        //Atendimentos
+        fputcsv($handle, array('ID', 'Data do Atendimento', 'Paciente'));
+        foreach($medico->atendimentos as $atendimento){
+            fputcsv($handle, array($atendimento->id, $atendimento->data_atendimento, $atendimento->paciente->nome, $atendimento->paciente->cpf));
+        }
+
+        fclose($handle);
+
+        return response()->stream(function() use($handle) {
+            fclose($handle);
+        }, 200, $headers);
+    }
 }
