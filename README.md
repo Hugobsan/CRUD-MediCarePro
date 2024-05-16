@@ -40,7 +40,7 @@ docker-compose up -d
 ```
 
 4. Execute o comando abaixo para rodar as migrations e seeders
-Obs: Os seeders irão gerar automaticamente 10 registros de pacientes, medicos e atendimentos
+Obs: Os seeders irão gerar automaticamente 30 registros de pacientes, medicos e atendimentos
 ```bash
 docker-compose exec app php artisan migrate --seed
 ```
