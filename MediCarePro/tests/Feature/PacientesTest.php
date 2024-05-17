@@ -79,13 +79,13 @@ class PacientesTest extends TestCase
      */
     public function testEditFormIsRenderedCorrectly()
     {
-        $id = Paciente::all()->random()->id;
-        $response = $this->get(route('pacientes.edit', $id));
+        $paciente = Paciente::all()->random();
+        $response = $this->get(route('pacientes.edit', $paciente->id));
 
         $response->assertSee('Editar Paciente');
-        $response->assertSee('Nome');
-        $response->assertSee('CPF');
-        $response->assertSee('E-mail');
+        $response->assertSee($paciente->nome);
+        $response->assertSee($paciente->cpf);
+        $response->assertSee($paciente->email);
         $response->assertSee('Salvar');
     }
 
@@ -130,13 +130,13 @@ class PacientesTest extends TestCase
      */
     public function testShowPageIsRenderedCorrectly()
     {
-        $id = Paciente::all()->random()->id;
-        $response = $this->get(route('pacientes.show', $id));
+        $paciente = Paciente::all()->random();
+        $response = $this->get(route('pacientes.show', $paciente->id));
 
         $response->assertSee('Paciente');
-        $response->assertSee('Nome');
-        $response->assertSee('CPF');
-        $response->assertSee('E-mail');
+        $response->assertSee($paciente->nome);
+        $response->assertSee($paciente->cpf);
+        $response->assertSee($paciente->email);
         $response->assertSee('Data de Nascimento');
     }
 

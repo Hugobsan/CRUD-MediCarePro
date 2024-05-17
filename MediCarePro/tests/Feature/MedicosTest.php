@@ -78,13 +78,13 @@ class MedicosTest extends TestCase
      */
     public function testEditFormIsRenderedCorrectly()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.edit', $id));
+        $medico = Medico::all()->random();
+        $response = $this->get(route('medicos.edit', $medico->$id));
 
         $response->assertSee('Editar Médico');
-        $response->assertSee('Nome');
-        $response->assertSee('CRM');
-        $response->assertSee('Especialidade');
+        $response->assertSee($medico->nome);
+        $response->assertSee($medico->crm);
+        $response->assertSee($medico->especialidade);
         $response->assertSee('Salvar');
     }
 
@@ -118,8 +118,8 @@ class MedicosTest extends TestCase
      */
     public function testShowPageIsAccessible()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.show', $id));
+        $medico = Medico::all()->random();
+        $response = $this->get(route('medicos.show', $medico->id));
 
         $response->assertStatus(200);
     }
@@ -129,12 +129,12 @@ class MedicosTest extends TestCase
      */
     public function testShowPageIsRenderedCorrectly()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.show', $id));
+        $medico = Medico::all()->random();
+        $response = $this->get(route('medicos.show', $medico->id));
 
-        $response->assertSee('Nome');
-        $response->assertSee('CRM');
-        $response->assertSee('Especialidade');
+        $response->assertSee($medico->nome);
+        $response->assertSee($medico->crm);
+        $response->assertSee($medico->especialidade);
     }
 
     /**
