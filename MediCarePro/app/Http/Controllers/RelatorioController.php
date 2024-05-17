@@ -6,6 +6,7 @@ use App\Exports\RelatorioExport;
 use App\Medico;
 use Illuminate\Http\Request;
 use Excel;
+use Barryvdh\DomPDF\PDF;
 
 class RelatorioController extends Controller
 {
