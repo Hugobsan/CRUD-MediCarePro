@@ -12,9 +12,10 @@
                 <h1>Médicos</h1>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center mb-4">
-                <a href="{{ route('medicos.export') }}" class="btn btn-success" target="_blank">
-                    <i class="fas fa-file-export"></i> Exportar CSV
-                </a>
+                <button class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#relatorioAtendimentosModal">
+                    <i class="fas fa-file"></i>
+                    Relatório de Atendimentos
+                </button>
                 <a href="{{ route('medicos.create') }}" class="btn btn-primary"><i class="fas fa-plus text-white"></i> Adicionar Médico</a>
             </div>
         </div>
@@ -58,8 +59,9 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    @include('medicos.components.atendimentos.relatorio')
 @endsection
 
 @push('scripts')

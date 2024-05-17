@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Paciente;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PacienteExport implements FromCollection
+class PacienteExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection

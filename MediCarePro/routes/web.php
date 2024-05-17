@@ -25,3 +25,8 @@ Route::group(array('prefix' => 'medicos', ['namespace' => 'medicos'], 'as' => 'm
 Route::resource('medicos', 'MedicoController');
 Route::resource('atendimentos', 'AtendimentoController');
 
+Route::group(array('prefix' => 'relatorios', ['namespace' => 'relatorios'], 'as' => 'relatorios.'), function () {
+    Route::group(array('prefix' => 'atendimentos', ['namespace' => 'atendimentos'], 'as' => 'atendimentos.'), function () {
+        Route::post('/medico', 'RelatorioController@atendimentosPorMedico')->name('medico');
+    });
+});
