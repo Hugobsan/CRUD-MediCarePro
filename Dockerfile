@@ -1,14 +1,18 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm
 
 # Instalar dependências necessárias para compilar as extensões PHP
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     libzip-dev \
     libxml2-dev \
-    gd-dev \
-    oniguruma-dev
-
-# Instalar e habilitar extensões PHP
-RUN docker-php-ext-install pdo pdo_mysql zip xml gd iconv simplexml xmlreader
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libonig-dev \
+    unzip \
+    libxml2 \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip gd iconv simplexml \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instalação do Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -18,9 +22,3 @@ WORKDIR /var/www/html
 
 # Copiar o conteúdo do diretório MediCarePro para o diretório de trabalho no contêiner
 COPY MediCarePro /var/www/html/
-
-# Rodando o composer install
-RUN composer install
-
-# Realizando as migrations após a instalação do composer e executando a aplicação
-CMD php artisan serve --host=0.0.0.0 --port=8000
