@@ -119,8 +119,7 @@ class PacientesTest extends TestCase
      */
     public function testShowPageIsAccessible()
     {
-        $id = Paciente::all()->random()->id;
-        $response = $this->get(route('pacientes.show', $id));
+        $response = $this->get(route('pacientes.show', 1));
 
         $response->assertStatus(200);
     }
