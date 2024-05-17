@@ -16,7 +16,7 @@
         <li>Cadastro de Pacientes</li>
         <li>Cadastro de Médicos</li>
         <li>Cadastro de Consultas</li>
-        <li>Relatórios de Consultas</li>
+        <li>Relatório de Consultas por Médico</li>
     </ul>
     <p>Para começar, clique em um dos itens do menu.</p>
 
