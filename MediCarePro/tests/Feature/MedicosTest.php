@@ -79,7 +79,7 @@ class MedicosTest extends TestCase
     public function testEditFormIsRenderedCorrectly()
     {
         $medico = Medico::all()->random();
-        $response = $this->get(route('medicos.edit', $medico->$id));
+        $response = $this->get(route('medicos.edit', $medico->id));
 
         $response->assertSee('Editar Médico');
         $response->assertSee($medico->nome);
