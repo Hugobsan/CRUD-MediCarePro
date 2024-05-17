@@ -48,8 +48,6 @@
                                 <td>
                                     <a href="{{ route('atendimentos.edit', $atendimento->id) }}" class="btn btn-primary"> <i
                                             class="text-white fas fa-edit"></i> </a>
-                                    <a href="{{ route('atendimentos.show', $atendimento->id) }}" class="btn btn-info"> <i
-                                            class="text-white fas fa-eye"></i> </a>
                                     <form action="{{ route('atendimentos.destroy', $atendimento->id) }}" method="post"
                                         style="display: inline;">
                                         @csrf
