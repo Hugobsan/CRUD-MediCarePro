@@ -8,20 +8,16 @@ use App\Http\Requests\AtendimentoRequest;
 use App\Medico;
 use App\Paciente;
 use Illuminate\Http\Request;
+use Excel;
 
 class AtendimentoController extends Controller
 {
     public function index()
     {
         $atendimentos = Atendimento::paginate(10);
-        return view('atendimentos.index', compact('atendimentos'));
-    }
-
-    public function create()
-    {
-        $medicos = Medico::all();
         $pacientes = Paciente::all();
-        return view('atendimentos.create', compact('medicos', 'pacientes'));
+        $medicos = Medico::all();
+        return view('atendimentos.index', compact('atendimentos','pacientes','medicos'));
     }
 
     public function store(AtendimentoRequest $request)
@@ -29,12 +25,6 @@ class AtendimentoController extends Controller
         Atendimento::create($request->all());
         toastr()->success('Atendimento cadastrado com sucesso!');
         return redirect()->back();
-    }
-
-    public function show($id)
-    {
-        $atendimento = Atendimento::findOrFail($id);
-        return view('atendimentos.show', compact('atendimento'));
     }
 
     public function edit($id)

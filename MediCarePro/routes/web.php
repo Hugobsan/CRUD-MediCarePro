@@ -28,5 +28,5 @@ Route::resource('medicos', 'MedicoController');
 Route::group(array('prefix' => 'atendimentos', ['namespace' => 'atendimentos'], 'as' => 'atendimentos.'), function () {
     Route::get('/export', 'AtendimentoController@export')->name('export');
 });
-Route::resource('atendimentos', 'AtendimentoController');
+Route::resource('atendimentos', 'AtendimentoController', ['except' => ['show','create']]);
 
