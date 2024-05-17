@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Medico;
+use App\Paciente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class MedicosTest extends TestCase
+class PacientesTest extends TestCase
 {
     /**
      * Test if the create page is accessible.
@@ -16,7 +16,7 @@ class MedicosTest extends TestCase
      */
     public function testCreatePageIsAccessible()
     {
-        $response = $this->get(route('medicos.create'));
+        $response = $this->get(route('pacientes.create'));
 
         $response->assertStatus(200);
     }
@@ -28,12 +28,12 @@ class MedicosTest extends TestCase
      */
     public function testFormIsRenderedCorrectly()
     {
-        $response = $this->get(route('medicos.create'));
+        $response = $this->get(route('pacientes.create'));
 
-        $response->assertSee('Cadastrar Novo Médico');
+        $response->assertSee('Cadastrar Novo Paciente');
         $response->assertSee('Nome');
-        $response->assertSee('CRM');
-        $response->assertSee('Especialidade');
+        $response->assertSee('CPF');
+        $response->assertSee('E-mail');
         $response->assertSee('Salvar');
     }
 
@@ -48,14 +48,15 @@ class MedicosTest extends TestCase
 
         $data = [
             'nome' => $faker->name,
-            'crm' => $faker->randomNumber(5) . '-' . $faker->randomLetter() . $faker->randomLetter(),
-            'especialidade' => $faker->word
+            'cpf' => $faker->cpf,
+            'email' => $faker->email,
+            'data_nascimento' => $faker->date('Y-m-d')
         ];
 
-        $response = $this->post(route('medicos.store'), $data);
+        $response = $this->post(route('pacientes.store'), $data);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('medicos.index'));
+        $response->assertRedirect(route('pacientes.index'));
     }
 
     /**
@@ -65,8 +66,8 @@ class MedicosTest extends TestCase
      */
     public function testEditPageIsAccessible()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.edit', $id));
+        $id = Paciente::all()->random()->id;
+        $response = $this->get(route('pacientes.edit', $id));
 
         $response->assertStatus(200);
     }
@@ -78,13 +79,13 @@ class MedicosTest extends TestCase
      */
     public function testEditFormIsRenderedCorrectly()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.edit', $id));
+        $id = Paciente::all()->random()->id;
+        $response = $this->get(route('pacientes.edit', $id));
 
-        $response->assertSee('Editar Médico');
+        $response->assertSee('Editar Paciente');
         $response->assertSee('Nome');
-        $response->assertSee('CRM');
-        $response->assertSee('Especialidade');
+        $response->assertSee('CPF');
+        $response->assertSee('E-mail');
         $response->assertSee('Salvar');
     }
 
@@ -99,16 +100,16 @@ class MedicosTest extends TestCase
 
         $data = [
             'nome' => $faker->name,
-            'crm' => $faker->randomNumber(5) . '-' . $faker->randomLetter() . $faker->randomLetter(),
-            'especialidade' => $faker->word
+            'cpf' => $faker->cpf,
+            'email' => $faker->email,
+            'data_nascimento' => $faker->date('Y-m-d')
         ];
 
-        $id = Medico::all()->random()->id;
-
-        $response = $this->put(route('medicos.update', $id), $data);
+        $id = Paciente::all()->random()->id;
+        $response = $this->put(route('pacientes.update', $id), $data);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('medicos.index'));
+        $response->assertRedirect(route('pacientes.index'));
     }
 
     /**
@@ -118,8 +119,8 @@ class MedicosTest extends TestCase
      */
     public function testShowPageIsAccessible()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.show', $id));
+        $id = Paciente::all()->random()->id;
+        $response = $this->get(route('pacientes.show', $id));
 
         $response->assertStatus(200);
     }
@@ -129,12 +130,14 @@ class MedicosTest extends TestCase
      */
     public function testShowPageIsRenderedCorrectly()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->get(route('medicos.show', $id));
+        $id = Paciente::all()->random()->id;
+        $response = $this->get(route('pacientes.show', $id));
 
+        $response->assertSee('Paciente');
         $response->assertSee('Nome');
-        $response->assertSee('CRM');
-        $response->assertSee('Especialidade');
+        $response->assertSee('CPF');
+        $response->assertSee('E-mail');
+        $response->assertSee('Data de Nascimento');
     }
 
     /**
@@ -142,23 +145,23 @@ class MedicosTest extends TestCase
      *
      * @return void
      */
-    public function testDelete()
+    public function testDeleteWorksCorrectly()
     {
-        $id = Medico::all()->random()->id;
-        $response = $this->delete(route('medicos.destroy', $id));
+        $id = Paciente::all()->random()->id;
+        $response = $this->delete(route('pacientes.destroy', $id));
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('medicos.index'));
+        $response->assertRedirect(route('pacientes.index'));
     }
 
     /**
-     * Test if the export works correctly.
+     * Test if the export page is accessible.
      *
      * @return void
      */
-    public function testExport()
+    public function testExportPageIsAccessible()
     {
-        $response = $this->get(route('medicos.export'));
+        $response = $this->get(route('pacientes.export'));
 
         $response->assertStatus(200);
     }
