@@ -63,6 +63,3 @@
 
     @include('medicos.components.atendimentos.relatorio')
 @endsection
-
-@push('scripts')
-@endpush
